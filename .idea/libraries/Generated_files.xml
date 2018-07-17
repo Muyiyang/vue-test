@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/js/vue-compiled.js" />
+        <item url="file://$PROJECT_DIR$/js/vue-router-compiled.js" />
+        <item url="file://$PROJECT_DIR$/js/shop-compiled-compiled.js" />
+        <item url="file://$PROJECT_DIR$/js/vue-resource-compiled.js" />
+        <item url="file://$PROJECT_DIR$/js/bootstrap-compiled.js" />
+        <item url="file://$PROJECT_DIR$/js/jquery.min-compiled.js" />
+        <item url="file://$PROJECT_DIR$/shop-compiled.js" />
+        <item url="file://$PROJECT_DIR$/js/shop-compiled.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/js/vue-compiled.js" />
+      <root url="file://$PROJECT_DIR$/js/vue-router-compiled.js" />
+      <root url="file://$PROJECT_DIR$/js/shop-compiled-compiled.js" />
+      <root url="file://$PROJECT_DIR$/js/vue-resource-compiled.js" />
+      <root url="file://$PROJECT_DIR$/js/bootstrap-compiled.js" />
+      <root url="file://$PROJECT_DIR$/js/jquery.min-compiled.js" />
+      <root url="file://$PROJECT_DIR$/shop-compiled.js" />
+      <root url="file://$PROJECT_DIR$/js/shop-compiled.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

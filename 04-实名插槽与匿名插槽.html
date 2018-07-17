@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>my-project</title>
+  <!--  <script type="text/javascript" src="js/test1.js"></script> -->
+  <script src="./js/vue.js"></script>
+  <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <my-panel>
+        <div style="color:red;">我是添加的内容</div>
+        <div slot="mainbot" style="color:green;">我要插入到mainbot里面</div>
+      </my-panel>
+
+    </div>  
+    <template id="my-panel">
+      <div>
+        <h1>我是slot头部</h1>        
+        <!--实名插槽-->
+        <slot name="maintop">我是插槽main的头部maintop</slot>
+         <!--匿名插槽-->
+        <slot>我是插槽</slot>
+        <slot name="mainbot">我是插槽main的底部mainbot</slot>
+        <p>我是slot尾部</p>
+    </div>
+    </template>
+  <script>  
+    Vue.component('my-panel',{
+      template:"#my-panel",
+      data(){
+        return{
+          msg:"今天天气很好~"
+        }
+      }
+    })
+   new Vue({
+    el:'#app'
+   })
+  </script>
+  </body>
+  <!-- 
+  
+  -->
+</html>

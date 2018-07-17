@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>my-project</title>
+	<!--  <script type="text/javascript" src="js/test1.js"></script> -->
+	<script src="./js/vue.js"></script>
+	<style>
+		.active{
+			background:#0fd;
+			color:#fff;
+		}
+		.error{
+			background:#0dd;
+			color:#fff;
+		}
+	</style>
+  </head>
+  <body>
+    <div id="app">
+		<h1 v-text="num" @click="change()"></h1>
+		<h1 v-html="content"></h1>
+		<span>{{product}} apple {{num+2}}</span>
+		<button v-bind:disabled="isShow">add</button>
+		<div v-bind:id="'list'+id" v-if="isShow">现在看到了吧{{reverse}}</div>
+		<div v-bind:id="'list'+id" v-if="show">w-resize看到了吧</div>
+		<div v-bind:class="classObject">aaaa</div>
+		<div v-bind:class="[{isActive:activeClass},errorClass]">我是有颜色的</div>
+		<div :style="styleObject">我是属性style测试</div>
+		<br>
+		<input type="text"v-model="num"/>
+		<div :title="title">这是一个title</div>
+		<div >
+			姓<input v-model.lazy="firstName"/>
+			名<input v-model="lastName"/>
+			<div>{{fullName}}</div>
+			<div>{{count}}</div>
+		</div>
+		<div>
+			<p>v-for 数组迭代</p>
+			<ul>
+				<li v-for="(item,index) of items" :key="item.id" :style="{'list-style':'none'}">{{index}}   姓名：{{item.name}}，年龄：{{item.age}}</li>
+			</ul>
+			<p>v-for 对象迭代</p>
+			<ul>
+				<li v-for="(key,value) in valueObjects" :style="{'list-style':'none'}">{{value}}:{{key}}</li>
+			</ul>
+		</div>
+		<div>
+		<button @click="count+=1">count点击统计+1</button>
+			<span>{{count}}</span>
+		</div>
+	</div>	
+	<script>
+		const app=new Vue({
+			el:'#app',
+			data:{
+				id:1,
+				product:'Boots is ',
+				num:123,
+				title:"I hope I am yellow",
+				content:"<span v-bind:title='title' style='color:#0ff;'>124</span>",
+				isShow:true,
+				show:false,
+				msg:"Not a penny to my name,Not shirt on my back",
+				isActive: false,
+				error: false,
+				activeClass:"active",
+				errorClass:"error",
+				firstName:"张",
+				lastName:"三丰",
+				count:0,
+				items:[
+					{name:"钟珏伟",age:13},
+					{name:"陈锋",age:20},
+					{name:"张高于",age:54},
+					{name:"李少武",age:43}
+					
+				],
+				valueObjects:{
+					className:"一年级",
+					age:54
+				},
+				styleObject:{
+					background:"#0fd",
+					fontSize:"16px",
+					color:"#333",
+					transform:"rotate(-1deg)" 
+					
+				}
+			},
+			methods:{
+				change:function(){
+					this.product=this.num;
+				}
+			},
+			computed:{
+				reverse:function(){
+					return this.msg.split(" ").reverse().join(" ");
+				},
+				classObject: function () {
+					return {
+					  active: this.isActive && !this.error,
+					  'text-danger': this.error && this.error.type === 'fatal'
+					}
+				},
+				fullName: function () {
+					return this.firstName+this.lastName;
+				}
+			},
+			watch:{
+				fullName1:function(){
+					this.count++
+				},
+				lastName:function(){
+					this.count++
+				}
+			}
+		})
+	</script>
+  </body>
+  <!-- 
+	1、侦听器 watch:{
+				firstName:function(){
+					...
+				}
+		      }  
+		ps:firstName是需要侦听的字段值
+	2、行内样式:style="{'list-style':'none'}"或者:style="{listStyle:'none'}"
+	3、提供第二个的参数为键名->firstName、第三个参数为索引->index
+	<div v-for="(value, key) in object">
+	  {{ key }}: {{ value }}
+	</div>
+	———》 firstName: John  
+	4、为已有对象赋予多个新属性
+		app.valueObjects= Object.assign({}, app.valueObjects, {
+		  age: 27,
+		  favoriteColor: 'Vue Green'
+	   })
+	5、v-on:submit.prevent="addNewTodo"——》event.preventDefault()
+	6、is="todo-item"
+	7、为了解决这个问题，Vue.js 为 v-on 提供了事件修饰符。之前提过，修饰符是由点开头的指令后缀来表示的。
+		.stop
+		.prevent
+		.capture
+		.self
+		.once
+		.passive
+	8、 <option disabled value="">请选择</option>
+  -->
+</html>

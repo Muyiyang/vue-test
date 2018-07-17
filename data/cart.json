@@ -1,0 +1,28 @@
+{
+	"allShops":{
+		"totalMoney":0,
+		"shopList":[
+			{
+				"shopId":"1001",
+				"shopName":"360智能摄像机云台版 全景监控 360全景云台1080P",
+				"shopPrice":299.00,
+				"shopNumber":1,
+				"shopImage":"images/bag1.jpg"
+			},
+			{
+				"shopId":"1002",
+				"shopName":"成人儿童女学游泳辅助教学工具泡沫浮力腰带浮腰背漂腰浮带漂浮板",
+				"shopPrice":99.00,
+				"shopNumber":1,
+				"shopImage":"images/bag2.jpg"
+			},
+			{
+				"shopId":"1003",
+				"shopName":"游泳包干湿分离男便携专用包游泳装备泳衣收纳包防水透明沙滩包女",
+				"shopPrice":29.00,
+				"shopNumber":1,
+				"shopImage":"images/bag3.jpg"
+			}
+		]
+	}
+}

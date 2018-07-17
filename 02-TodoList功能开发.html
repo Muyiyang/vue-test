@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>TodoList功能开发</title>
+	<!--  <script type="text/javascript" src="js/test1.js"></script> -->
+	<script src="./js/vue.js"></script>
+	<style> </style>
+  </head>
+  <body>
+    <div id="app">
+		<div>
+			<input v-model="inputValue" v-on:keyup.13="handleSubmit"/>
+			<input type="checkbox" v-model="checked">{{checked}}
+			<button @click="handleSubmit">提交</button>
+			<ul>
+				<todo-item 
+				v-for="(item,index) in list" 
+				:key="index" :content="item" 
+				:index="index"
+				@delete="handleDelete"
+				>{{item}}</todo-item>
+			</ul>
+		</div>	
+		<input type="checkbox" value="1" v-model="checkedList">1
+		<input type="checkbox" value="2" v-model="checkedList">2
+		<input type="checkbox" value="3" v-model="checkedList">3
+		checkedList的值为：{{checkedList}}
+		<input v-model.number="hei" type="number">
+	</div>	
+	<script>
+	//全局组件
+	//Vue.component('todo-item',{
+			//props:['content'],
+			//template:'<li @click="handleSubmit">{{content}}</li>',
+			//methods:{
+			//	handleSubmit:function(){
+			//		alert(this.content);
+			//	}
+			//}
+	//})
+	//局部组件
+		let TodoItem={
+			props:['content','index'],
+			template:'<li @click="handleSubmit">{{content}}</li>',
+			methods:{
+				handleSubmit:function(){
+					this.$emit('delete',this.index)
+				}				
+			}
+		}
+		const app=new Vue({
+			el:'#app',
+			components:{
+				'todo-item':TodoItem
+			},
+			data:{
+				checked:true,
+				checkedList:['1'],
+				inputValue:"",
+				list:[],
+				hei:""
+			},
+			methods:{
+				handleSubmit:function(){
+					this.list.push(this.inputValue);
+					this.inputValue="";
+				},
+				handleDelete:function(index){
+					this.list.splice(index,1);
+				}
+			}
+		})
+		
+	</script>
+  </body>
+  <!-- 
+	1、methods\components
+	2、一个组件就是一个实例
+	3、<input v-model.trim="msg">
+	4、调用内建的 $emit 方法并传入事件的名字，来向父级组件触发一个事件
+		this.$emit('delete',this.index)
+		v-on:click="$emit('enlarge-text')"
+		v-on:enlarge-text="postFontSize += 0.1"
+		
+		 v-on:input="$emit('input', $event.target.value)"
+  -->
+</html>

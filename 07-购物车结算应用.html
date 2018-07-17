@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>购物车结算应用-请求数据vue-resource</title>
+  <script src="./js/vue.js"></script>
+  <script src="./js/vue-router.js"></script>
+   <script src="./js/vue-resource.js"></script>
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/bootstrap.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/common.css" />
+  <link rel="stylesheet" href="./css/iconfont/iconfont.css" />
+  <style>
+  </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+          <ul class="sb-gjlist">
+            <li v-for="(shopItem,index) in shopList">
+              <div class="lt">
+                <div class="shopwrap">
+                  <label class="btn-radio">
+                     <input type="radio" :checked="shopItem.itemChecked" @click="selectedItem(shopItem,index)">
+                  </label>
+                  <span class="minus" @click="shopItemPrice(shopItem,false)">-</span>
+                  <input class="shopnum" type="tel" value="shopItem.shopNumber" v-model="shopItem.shopNumber" >
+                  <span class="plus" @click="shopItemPrice(shopItem,true)">+</span>
+                </div>
+              </div>
+              <div class="rt">
+                <div class="rt-contimg">
+                  <img :src="shopItem.shopImage" width="270">
+                </div>
+                <div class="rt-cont">
+                  <div>ID：<span v-text="shopItem.shopId"></span></div>
+                  <div>商品名称：<span v-text="shopItem.shopName"></span></div>
+                  <div>单价：{{shopItem.shopPrice|moneyFormat(shopItem.shopPrice)}}</div>
+                  <div>总价格：{{shopItem.shopNumber * shopItem.shopPrice |moneyFormat(shopItem.shopNumber * shopItem.shopPrice)}}</div>
+                </div>
+                <div class="shop-del"><i class="iconfont p-icon-trash" @click="delItem(shopItem,index)"></i></div>
+              </div>
+            </li>
+          </ul>
+          <footer class="bg-danger">
+              <form class="form-horizontal">
+                  <div class="form-group">
+                      <div class="col-xs-2">
+                          <div class="radio shopradio" >
+                              <label><input type="radio" v-bind:checked="shopseletedAll" @click="selectedAll()">全选</label>
+                          </div>
+                      </div>
+                      <div class="col-xs-8">
+                          <div class="shopcount"> 合计{{allPrice|moneyFormat(allPrice)}}</div>
+                      </div>
+                      <div class="col-xs-2">
+                          <button class="btn-danger shopaccount">去结算</button>
+                      </div>
+                  </div>
+              </form>
+          </footer>
+      </div>
+    </div>
+  <script type="text/javascript">
+    /*$(function(){
+      $(".shopwrap").each(function(){
+        var minus=$(this).find(".minus"),plus=$(this).find(".plus");
+        minus.click(function(){
+          var val=$(this).next().val();
+          if(val>0){
+            $(this).next().val(parseInt(val)-1);
+          }
+        })
+        plus.click(function(){
+          var val=$(this).prev().val();
+          $(this).prev().val(parseInt(val)+1);
+        })
+      })
+    })*/
+  </script>
+  <script src="./js/shop.js"></script>
+  </body>
+</html>
